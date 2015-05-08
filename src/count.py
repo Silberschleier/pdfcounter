@@ -34,17 +34,27 @@ count_negative = 0
 count_positive = 0
 
 print "Positive:"
-print "---------"
+print "------------------------------"
+print "|  # |            Word | val |"
+print "------------------------------"
+idx = 1
 for key, value in sorted(words_positive.iteritems(), key=lambda (k, v): (v, k), reverse=True):
     count_positive += value
-    print "%s: %s" % (key, value)
+    print "| %2s | %15s | %3s |" % (idx, key, value)
+    idx += 1
+print "------------------------------"
 
 
 print "\n\nNegative:"
-print "---------------"
+print "------------------------------"
+print "|  # |            Word | val |"
+print "------------------------------"
+idx = 1
 for key, value in sorted(words_negative.iteritems(), key=lambda (k, v): (v, k), reverse=True):
     count_negative += value
-    print "%s: %s" % (key, value)
+    print "| %2s | %15s | %3s |" % (idx, key, value)
+    idx += 1
+print "------------------------------"
 
 
 print "Total: postive = %s, negative = %s" % (count_positive, count_negative)

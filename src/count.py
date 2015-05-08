@@ -5,6 +5,7 @@ def count_words(word, word_list):
     for key in word_list:
             if key.lower() in word.lower():
                 word_list[key] += 1
+                break
 
 words_positive = {}
 words_negative = {}
@@ -26,8 +27,9 @@ with open('../text.pdf') as file:
 for page in document:
     words = page.split(" ")
     for word in words:
-        count_words(word, words_negative)
         count_words(word, words_positive)
+        count_words(word, words_negative)
+
 
 
 ''' Print the results '''
@@ -41,9 +43,10 @@ print "|  # |            Word | val |"
 print "------------------------------"
 idx = 1
 for key, value in sorted(words_positive.iteritems(), key=lambda (k, v): (v, k), reverse=True):
-    count_positive += value
-    print "| %2s | %15s | %3s |" % (idx, key, value)
-    idx += 1
+    if value > 0:
+        count_positive += value
+        print "| %2s | %15s | %3s |" % (idx, key, value)
+        idx += 1
 print "------------------------------"
 
 
@@ -53,9 +56,10 @@ print "|  # |            Word | val |"
 print "------------------------------"
 idx = 1
 for key, value in sorted(words_negative.iteritems(), key=lambda (k, v): (v, k), reverse=True):
-    count_negative += value
-    print "| %2s | %15s | %3s |" % (idx, key, value)
-    idx += 1
+    if value > 0:
+        count_negative += value
+        print "| %2s | %15s | %3s |" % (idx, key, value)
+        idx += 1
 print "------------------------------"
 
 

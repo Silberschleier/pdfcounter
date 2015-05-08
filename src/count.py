@@ -1,7 +1,22 @@
 import slate
 
-with open('../text.pdf') as file:
-    doc = slate.PDF(file)
+words_positive = []
+words_negative = []
 
-for s in doc:
-    print s + "\n"
+file_positive = open("../wordlist_positive.txt")
+for line in file_positive:
+    words_positive.append((line.rstrip('\n'), 0))
+
+file_negative = open("../wordlist_negative.txt")
+for line in file_negative:
+    words_negative.append((line.rstrip('\n'), 0))
+
+
+print words_positive
+print words_negative
+
+with open('../text.pdf') as file:
+    document = slate.PDF(file)
+
+for page in document:
+    words = page.split(" ")

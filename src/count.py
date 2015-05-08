@@ -1,7 +1,7 @@
 import slate
 
-
-def contains_word(word, word_list):
+''' Counting function '''
+def count_words(word, word_list):
     for key in word_list:
             if key.lower() in word.lower():
                 word_list[key] += 1
@@ -18,17 +18,19 @@ file_negative = open("../wordlist_negative.txt")
 for line in file_negative:
     words_negative[line.rstrip('\n')] = 0
 
-
+''' Load pdf and convert to strings '''
 with open('../text.pdf') as file:
     document = slate.PDF(file)
 
-
+''' Iterate through data '''
 for page in document:
     words = page.split(" ")
     for word in words:
-        contains_word(word, words_negative)
-        contains_word(word, words_positive)
+        count_words(word, words_negative)
+        count_words(word, words_positive)
 
+
+''' Print the results '''
 
 count_negative = 0
 count_positive = 0

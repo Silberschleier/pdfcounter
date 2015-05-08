@@ -1,11 +1,12 @@
 import slate
+import string
 
 ''' Counting function '''
 def count_words(word, word_list):
     for key in word_list:
-            if key.lower() in word.lower():
-                word_list[key] += 1
-                break
+        if key.lower() == word.lower().translate(string.maketrans("", ""), string.punctuation):
+            word_list[key] += 1
+            break
 
 words_positive = {}
 words_negative = {}
@@ -38,29 +39,29 @@ count_negative = 0
 count_positive = 0
 
 print "Positive:"
-print "------------------------------"
-print "|  # |            Word | val |"
-print "------------------------------"
+print "-------------------------------"
+print "|   # |            Word | val |"
+print "-------------------------------"
 idx = 1
 for key, value in sorted(words_positive.iteritems(), key=lambda (k, v): (v, k), reverse=True):
     if value > 0:
         count_positive += value
-        print "| %2s | %15s | %3s |" % (idx, key, value)
+        print "| %3s | %15s | %3s |" % (idx, key, value)
         idx += 1
-print "------------------------------"
+print "-------------------------------"
 
 
 print "\n\nNegative:"
-print "------------------------------"
-print "|  # |            Word | val |"
-print "------------------------------"
+print "-------------------------------"
+print "|   # |            Word | val |"
+print "-------------------------------"
 idx = 1
 for key, value in sorted(words_negative.iteritems(), key=lambda (k, v): (v, k), reverse=True):
     if value > 0:
         count_negative += value
-        print "| %2s | %15s | %3s |" % (idx, key, value)
+        print "| %3s | %15s | %3s |" % (idx, key, value)
         idx += 1
-print "------------------------------"
+print "-------------------------------"
 
 
 print "Total: postive = %s, negative = %s" % (count_positive, count_negative)

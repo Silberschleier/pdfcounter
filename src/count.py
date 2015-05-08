@@ -40,7 +40,7 @@ for key, value in sorted(words_positive.iteritems(), key=lambda (k, v): (v, k), 
     print "%s: %s" % (key, value)
 
 
-print "Negative:"
+print "\n\nNegative:"
 print "---------------"
 for key, value in sorted(words_negative.iteritems(), key=lambda (k, v): (v, k), reverse=True):
     count_negative += value

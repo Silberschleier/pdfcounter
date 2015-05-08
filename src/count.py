@@ -3,8 +3,9 @@ import string
 
 ''' Counting function '''
 def count_words(word, word_list):
+    s = word.lower().translate(string.maketrans("", ""), string.punctuation)
     for key in word_list:
-        if key.lower() == word.lower().translate(string.maketrans("", ""), string.punctuation):
+        if key.lower() == s:
             word_list[key] += 1
             break
 

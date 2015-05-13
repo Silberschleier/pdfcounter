@@ -8,12 +8,10 @@ number_words = 0
 ''' Counting function '''
 def count_words(word, word_list):
     global iterations
+    iterations += 1
     s = word.lower().translate(string.maketrans("", ""), string.punctuation)
-    for key in word_list:
-        iterations += 1
-        if key.lower() == s:
-            word_list[key] += 1
-            break
+    if word_list.get(s) is not None:
+        word_list[s] += 1
 
 words_positive = {}
 words_negative = {}
@@ -21,13 +19,13 @@ words_negative = {}
 ''' Reading the wordlists and initialize each counter with zero '''
 file_positive = open("../wordlist_positive.txt")
 for line in file_positive:
-    words_positive[line.rstrip('\n')] = 0
+    words_positive[line.rstrip('\n').lower()] = 0
 
 print "Positive wordlist contains %s words." % len(words_positive)
 
 file_negative = open("../wordlist_negative.txt")
 for line in file_negative:
-    words_negative[line.rstrip('\n')] = 0
+    words_negative[line.rstrip('\n').lower()] = 0
 
 print "Negative wordlist contains %s words.\n" % len(words_negative)
 

@@ -3,6 +3,7 @@ import string
 import time
 
 iterations = 0
+number_words = 0
 
 ''' Counting function '''
 def count_words(word, word_list):
@@ -22,9 +23,13 @@ file_positive = open("../wordlist_positive.txt")
 for line in file_positive:
     words_positive[line.rstrip('\n')] = 0
 
+print "Positive wordlist contains %s words." % len(words_positive)
+
 file_negative = open("../wordlist_negative.txt")
 for line in file_negative:
     words_negative[line.rstrip('\n')] = 0
+
+print "Negative wordlist contains %s words.\n" % len(words_negative)
 
 ''' Load pdf and convert to strings '''
 with open('../text.pdf') as file:
@@ -36,6 +41,7 @@ time_start = time.time()
 
 for page in document:
     words = page.split(" ")
+    number_words += len(words)
     for word in words:
         count_words(word, words_positive)
         count_words(word, words_negative)
@@ -73,5 +79,6 @@ for key, value in sorted(words_negative.iteritems(), key=lambda (k, v): (v, k), 
 print "-------------------------------"
 
 
-print "Total: postive = %s, negative = %s" % (count_positive, count_negative)
-print "Processing finished after %s iterations (time: %s)" % (iterations, time_end - time_start)
+print "Total: postive = %s, negative = %s\n" % (count_positive, count_negative)
+print "Processed %s words." % number_words
+print "Processing finished after %s iterations (time: %ss)" % (iterations, time_end - time_start)

@@ -76,7 +76,9 @@ for key, value in sorted(words_negative.iteritems(), key=lambda (k, v): (v, k), 
         idx += 1
 print "-------------------------------"
 
+percent_positive = round(count_positive / float(number_words) * 100, 2)
+percent_negative = round(count_negative / float(number_words) * 100, 2)
 
-print "Total: postive = %s, negative = %s\n" % (count_positive, count_negative)
+print "Total: positive = %s (%s%%), negative = %s (%s%%)\n" % (count_positive, percent_positive, count_negative, percent_negative)
 print "Processed %s words." % number_words
 print "Processing finished after %s iterations (time: %ss)" % (iterations, time_end - time_start)

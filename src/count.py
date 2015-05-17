@@ -30,8 +30,17 @@ for line in file_negative:
 print "Negative wordlist contains %s words.\n" % len(words_negative)
 
 ''' Load pdf and convert to strings '''
-with open('../text.pdf') as file:
+pdfpath = '../text.pdf'
+print "Opening '%s'..." % pdfpath
+time_start = time.time()
+
+with open(pdfpath) as file:
     document = slate.PDF(file)
+
+time_end = time.time()
+print "Extracting text took %ss\n" % (time_end - time_start)
+
+
 
 ''' Iterate through data '''
 

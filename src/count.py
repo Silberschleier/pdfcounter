@@ -5,6 +5,13 @@ import time
 iterations = 0
 number_words = 0
 
+pdfpath = '../text.pdf'
+
+''' Set page_begin < 0 and page_end < 0 to process whole file '''
+page_begin = -1
+page_end = -1
+
+
 ''' Counting function '''
 def count_words(word, word_list):
     global iterations
@@ -30,7 +37,7 @@ for line in file_negative:
 print "Negative wordlist contains %s words.\n" % len(words_negative)
 
 ''' Load pdf and convert to strings '''
-pdfpath = '../text.pdf'
+
 print "Opening '%s'..." % pdfpath
 time_start = time.time()
 
@@ -38,15 +45,28 @@ with open(pdfpath) as file:
     document = slate.PDF(file)
 
 time_end = time.time()
+
+
 print "Extracting text took %ss\n" % (time_end - time_start)
+print "Document has %s pages.\n" % len(document)
 
+if page_begin <= 0:
+    page_begin = 1
+if page_end < 0:
+    page_end = len(document)
 
+if page_begin > len(document):
+    page_begin = len(document)
+if (page_end > len(document)) or (page_end < page_begin):
+    page_end = page_begin
+
+print "Analyzing pages %s to %s...\n" % (page_begin, page_end)
 
 ''' Iterate through data '''
 
 time_start = time.time()
 
-for page in document:
+for page in document[page_begin-1:page_end-1]:
     words = page.split(" ")
     number_words += len(words)
     for word in words:

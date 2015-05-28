@@ -27,13 +27,11 @@ words_negative = {}
 file_positive = open("../wordlist_positive.txt")
 for line in file_positive:
     words_positive[line.rstrip('\n').lower()] = 0
-
 print "Positive wordlist contains %s words." % len(words_positive)
 
 file_negative = open("../wordlist_negative.txt")
 for line in file_negative:
     words_negative[line.rstrip('\n').lower()] = 0
-
 print "Negative wordlist contains %s words.\n" % len(words_negative)
 
 ''' Load pdf and convert to strings '''
@@ -47,8 +45,7 @@ with open(pdfpath) as file:
 time_end = time.time()
 
 
-print "Extracting text took %ss\n" % (time_end - time_start)
-print "Document has %s pages.\n" % len(document)
+print "Extracted %s pages in %s seconds.\n" % (len(document), round((time_end - time_start), 2))
 
 if page_begin <= 0:
     page_begin = 1

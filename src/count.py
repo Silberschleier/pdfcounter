@@ -39,7 +39,7 @@ print "Negative wordlist contains %s words.\n" % len(words_negative)
 print "Opening '%s'..." % pdfpath
 time_start = time.time()
 
-with open(pdfpath) as file:
+with open(pdfpath, 'rb') as file:
     document = slate.PDF(file)
 
 time_end = time.time()
@@ -64,7 +64,7 @@ print "Analyzing pages %s to %s...\n" % (page_begin, page_end)
 time_start = time.time()
 
 for page in document[page_begin-1:page_end-1]:
-    words = page.split(" ")
+    words = page.replace('\n', ' ').split(" ")
     number_words += len(words)
     for word in words:
         count_words(word, words_positive)

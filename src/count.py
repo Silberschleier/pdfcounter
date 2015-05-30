@@ -104,7 +104,9 @@ print "-------------------------------"
 
 percent_positive = round(count_positive / float(number_words) * 100, 2)
 percent_negative = round(count_negative / float(number_words) * 100, 2)
+ratio = round(count_positive / float(count_negative), 2)
 
-print "Total: positive = %s (%s%%), negative = %s (%s%%)\n" % (count_positive, percent_positive, count_negative, percent_negative)
+print "Total: positive = %s (%s%%), negative = %s (%s%%)" % (count_positive, percent_positive, count_negative, percent_negative)
+print "ratio = %s\n" % ratio
 print "Processed %s words." % number_words
 print "Processing finished after %s iterations (time: %ss)" % (iterations, time_end - time_start)

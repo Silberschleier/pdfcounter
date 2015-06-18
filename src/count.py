@@ -27,11 +27,13 @@ words_negative = {}
 file_positive = open("../wordlist_positive.txt")
 for line in file_positive:
     words_positive[line.rstrip('\n').lower()] = 0
+    words_positive[line.rstrip('\n').lower()+"s"] = 0
 print "Positive wordlist contains %s words." % len(words_positive)
 
 file_negative = open("../wordlist_negative.txt")
 for line in file_negative:
     words_negative[line.rstrip('\n').lower()] = 0
+    words_negative[line.rstrip('\n').lower()+"s"] = 0
 print "Negative wordlist contains %s words.\n" % len(words_negative)
 
 ''' Load pdf and convert to strings '''
